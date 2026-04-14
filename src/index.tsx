@@ -6,12 +6,12 @@ import {getLang} from './model/i18n'
 const app = new Hono()
 
 // All routes under /cli prefix (mounted as sub-path of lifetimesoft-docs)
-app.get('/', (c) => {
+app.get('/cli', (c) => {
     const lang = getLang(c.req.query('lang'), c.req.header('Accept-Language'))
     return c.html(<CliHome lang={lang}/>)
 })
 
-app.get('/command/:group/:name', (c) => {
+app.get('/cli/command/:group/:name', (c) => {
     const lang = getLang(c.req.query('lang'), c.req.header('Accept-Language'))
     const group = c.req.param('group')
     const name = c.req.param('name')
