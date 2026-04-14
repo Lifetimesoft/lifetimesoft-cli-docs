@@ -43,6 +43,11 @@ export const CliCommandRef = ({lang, group: groupName, name}: {lang: Lang, group
     const prev = idx > 0 ? siblings[idx - 1] : null
     const next = idx < siblings.length - 1 ? siblings[idx + 1] : null
 
+    const cmdUrl = (cmdName: string) =>
+        groupName === 'ai agent'
+            ? `/cli/command/ai/agent/${cmdName}`
+            : `/cli/command/${groupName}/${cmdName}`
+
     return (
         <Layout title={`lifectl ${groupName} ${name} — CLI Docs`} lang={lang} activePath={activePath}>
             <Header lang={lang}/>
@@ -162,14 +167,14 @@ export const CliCommandRef = ({lang, group: groupName, name}: {lang: Lang, group
                     {/* Prev / Next navigation */}
                     <div class="flex items-center justify-between pt-8 border-t border-gray-100 mt-8">
                         {prev ? (
-                            <a href={`/cli/command/${groupName}/${prev.name}?lang=${lang}`}
+                            <a href={`${cmdUrl(prev.name)}?lang=${lang}`}
                                class="flex items-center gap-2 text-sm text-gray-500 hover:text-green-600 transition-colors">
                                 <svg class="w-4 h-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m15 18-6-6 6-6"/></svg>
                                 <span class="font-mono">{groupName} {prev.name}</span>
                             </a>
                         ) : <div/>}
                         {next ? (
-                            <a href={`/cli/command/${groupName}/${next.name}?lang=${lang}`}
+                            <a href={`${cmdUrl(next.name)}?lang=${lang}`}
                                class="flex items-center gap-2 text-sm text-gray-500 hover:text-green-600 transition-colors">
                                 <span class="font-mono">{groupName} {next.name}</span>
                                 <svg class="w-4 h-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m9 18 6-6-6-6"/></svg>

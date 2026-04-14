@@ -115,12 +115,17 @@ export const CliHome = ({lang}: {lang: Lang}) => {
                                     </div>
                                     <p class="text-sm text-gray-500 mb-4">{group.desc[lang]}</p>
                                     <div class="flex flex-wrap gap-2">
-                                        {group.commands.map(cmd => (
-                                            <a href={`/cli/command/${group.name}/${cmd.name}?lang=${lang}`}
-                                               class="inline-flex items-center px-2.5 py-1 rounded-lg text-xs font-mono bg-gray-50 text-gray-600 border border-gray-200 hover:bg-green-50 hover:text-green-700 hover:border-green-200 transition-colors">
-                                                {cmd.name}
-                                            </a>
-                                        ))}
+                                        {group.commands.map(cmd => {
+                                            const cmdUrl = group.name === 'ai agent'
+                                                ? `/cli/command/ai/agent/${cmd.name}`
+                                                : `/cli/command/${group.name}/${cmd.name}`
+                                            return (
+                                                <a href={`${cmdUrl}?lang=${lang}`}
+                                                   class="inline-flex items-center px-2.5 py-1 rounded-lg text-xs font-mono bg-gray-50 text-gray-600 border border-gray-200 hover:bg-green-50 hover:text-green-700 hover:border-green-200 transition-colors">
+                                                    {cmd.name}
+                                                </a>
+                                            )
+                                        })}
                                     </div>
                                 </div>
                             ))}

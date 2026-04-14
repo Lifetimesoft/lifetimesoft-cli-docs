@@ -7,6 +7,12 @@ export const Sidebar = ({lang, activePath}: {lang: Lang, activePath?: string}) =
         commands: group.commands,
     }))
 
+    // Build URL path for a command
+    const cmdPath = (g: CommandGroup, cmd: Command) =>
+        g.name === 'ai agent'
+            ? `/cli/command/ai/agent/${cmd.name}`
+            : `/cli/command/${g.name}/${cmd.name}`
+
     const navContent = (
         <nav class="p-3 flex flex-col gap-4">
             {/* Getting started */}
@@ -34,7 +40,7 @@ export const Sidebar = ({lang, activePath}: {lang: Lang, activePath?: string}) =
                         {group.name}
                     </div>
                     {commands.map(cmd => {
-                        const path = `/cli/command/${group.name}/${cmd.name}`
+                        const path = cmdPath(group, cmd)
                         const isActive = activePath === path
                         return (
                             <a href={`${path}?lang=${lang}`}

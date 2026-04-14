@@ -18,4 +18,11 @@ app.get('/cli/command/:group/:name', (c) => {
     return c.html(<CliCommandRef lang={lang} group={group} name={name}/>)
 })
 
+// ai agent subgroup: /cli/command/ai/agent/:name
+app.get('/cli/command/ai/agent/:name', (c) => {
+    const lang = getLang(c.req.query('lang'), c.req.header('Accept-Language'))
+    const name = c.req.param('name')
+    return c.html(<CliCommandRef lang={lang} group="ai agent" name={name}/>)
+})
+
 export default app
