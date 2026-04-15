@@ -98,6 +98,37 @@ export const CliHome = ({lang}: {lang: Lang}) => {
                         </div>
                     </section>
 
+                    {/* Registry */}
+                    <section id="registry" class="mb-12">
+                        <h2 class="text-xl font-bold text-gray-900 mb-4 flex items-center gap-2">
+                            <svg class="w-5 h-5 text-green-600" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg>
+                            {isEn ? 'Agent Registry' : 'Agent Registry'}
+                        </h2>
+                        <div class="bg-white border border-gray-100 rounded-xl overflow-hidden shadow-sm">
+                            <div class="p-5">
+                                <p class="text-sm text-gray-600 leading-relaxed mb-4">
+                                    {isEn
+                                        ? 'Browse and discover public AI agents at the Lifetime Soft Registry. You can pull any public agent directly with lifectl.'
+                                        : 'ค้นหาและดู AI Agent สาธารณะได้ที่ Lifetime Soft Registry สามารถ pull agent ที่เป็น public ได้โดยตรงผ่าน lifectl'}
+                                </p>
+                                <a href="https://registry.lifetimesoft.com/"
+                                   target="_blank"
+                                   rel="noopener noreferrer"
+                                   class="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-green-600 text-white text-sm font-medium hover:bg-green-700 transition-colors mb-5">
+                                    <svg class="w-4 h-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+                                    registry.lifetimesoft.com
+                                </a>
+                                <div class="border-t border-gray-100 pt-4 space-y-3">
+                                    <p class="text-xs font-semibold text-gray-400 uppercase tracking-wider">
+                                        {isEn ? 'Pull a public agent' : 'Pull agent สาธารณะ'}
+                                    </p>
+                                    <CodeBlock code="lifectl ai agent pull <agent-name>"/>
+                                    <CodeBlock code="lifectl ai agent pull myorg/my-agent"/>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
                     {/* Command groups */}
                     <section class="mb-12">
                         <h2 class="text-xl font-bold text-gray-900 mb-4 flex items-center gap-2">
@@ -168,6 +199,7 @@ export const CliHome = ({lang}: {lang: Lang}) => {
                             {[
                                 {href: '#installation', label: isEn ? 'Installation' : 'การติดตั้ง'},
                                 {href: '#quick-start', label: isEn ? 'Quick Start' : 'เริ่มต้นใช้งาน'},
+                                {href: '#registry', label: isEn ? 'Agent Registry' : 'Agent Registry'},
                                 {href: '#command-reference', label: isEn ? 'Command Reference' : 'คำสั่งทั้งหมด'},
                                 {href: '#global-options', label: isEn ? 'Global Options' : 'ตัวเลือกทั่วไป'},
                             ].map(item => (
